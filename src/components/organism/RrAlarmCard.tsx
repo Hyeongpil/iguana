@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Share, Heart } from 'react-feather'
 import RrImage from '../atom/RrImage'
 import RrLike from 'components/molecule/RrLike'
 

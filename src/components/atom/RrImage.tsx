@@ -8,7 +8,7 @@ const RrImage: FC<HtmlProps> = ({ src, size }) => {
 
 export default RrImage
 
-const RrImageWrapper = styled.img<{ src ,size }>`
+const RrImageWrapper = styled.img<{ src, size }>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   border-radius: 4.33333px;

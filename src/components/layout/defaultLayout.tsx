@@ -1,3 +1,4 @@
+import RrFooter from 'components/organism/RrFooter'
 import RrHeader from 'components/organism/RrHeader'
 import React, { FC } from 'react'
 
@@ -6,6 +7,7 @@ const DefaultLayout: FC = ({ children }) => {
     <>
       <RrHeader />
       {children}
+      <RrFooter />
     </>
   )
 }

@@ -57,8 +57,9 @@ const alarmDrawer = () => {
       <AlarmDrawerContentWrapper>
         <SubTitle>활성화 된 알림</SubTitle>
         <AlarmListWrapper>
-          {alarmList.map(alarm => (
+          {alarmList.map((alarm, index) => (
             <RrAlarmDrawerCard
+              key={index}
               userImg=""
               userName=""
               title={alarm.title}
@@ -74,8 +75,9 @@ const alarmDrawer = () => {
       <AlarmDrawerContentWrapper>
         <SubTitle>비활성화 된 알림</SubTitle>
         <AlarmListWrapper>
-          {alarmList.map(alarm => (
+          {alarmList.map((alarm, index) => (
             <RrAlarmDrawerCard
+              key={index}
               userImg=""
               userName=""
               title={alarm.title}
