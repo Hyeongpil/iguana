@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RrUserImg = ({ size }) => {
-  return <RrUserImgWrapper size={size}></RrUserImgWrapper>
+const RrUserImg = ({ image, size }) => {
+  return (
+    <RrUserImgWrapper
+      size={size}
+      src="/assets/image/profile.png"
+    ></RrUserImgWrapper>
+  )
 }
 
 export default RrUserImg
 
-const RrUserImgWrapper = styled.div<{ size: string }>`
+const RrUserImgWrapper = styled.img<{ size: string }>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  background-color: black;
   border-radius: 50%;
 `

@@ -1,26 +1,31 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import RrSwitch from '../atom/RrSwitch'
+import RrUserImg from '../atom/RrUserImg'
 
-const RrAlarmDrawerCard = ({ _id, time, message }) => {
-  const [onOff, setOnOff] = useState('비공개')
-  const handleChange = value => {
-    console.log(value)
-    value ? setOnOff('공개') : setOnOff('비공개')
-  }
+const RrAlarmDrawerCard = ({ userImg, userName, title, message, img, day, time, onoff }) => {
+  // const [onOff, setOnOff] = useState('비공개')
+  // const handleChange = value => {
+  //   console.log(value)
+  //   value ? setOnOff('공개') : setOnOff('비공개')
+  // }
   return (
     <RrAlarmDrawerCardWrapper>
-      <RrAlarmDrawerCardListWrapper>
-        <Img src="" alt="" />
-        <ContentsWrapper>
-          <TextWrapper>
-            <span>{time}</span>
-            <span>{message}</span>
-          </TextWrapper>
-          <RrSwitchButton idx={_id} onChange={handleChange} />
-        </ContentsWrapper>
-      </RrAlarmDrawerCardListWrapper>
-      <OnOffText>{onOff}</OnOffText>
+      <WriterWrapper writerData={userName}>
+        <RrUserImg image={userImg} size="" />
+        <span>{userName}</span>
+      </WriterWrapper>
+      <TopContentsWrapper>
+        <TextWrapper>
+          <Title>{title}</Title>
+          <Message>{message}</Message>
+        </TextWrapper>
+        <Img bg={img} />
+      </TopContentsWrapper>
+      <BottomContentsWrapper>
+        <span>{day}</span>
+        <span>{time}</span>
+        <span>{onoff}</span>
+      </BottomContentsWrapper>
     </RrAlarmDrawerCardWrapper>
   )
 }
@@ -28,42 +33,52 @@ const RrAlarmDrawerCard = ({ _id, time, message }) => {
 export default RrAlarmDrawerCard
 
 const RrAlarmDrawerCardWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  width: 416px;
+  /* height: 131px; */
+  padding: 16px 16px 11px;
+  background: rgba(245, 245, 245, 0.6);
+  border-radius: 13px;
 `
-const RrAlarmDrawerCardListWrapper = styled.div`
-  width: 567px;
-  height: 87px;
-  margin: 0 33px;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  border-radius: 10px;
-  display: flex;
-  overflow: hidden;
+const WriterWrapper = styled.div<{ writerData: string }>`
+  ${props => props.writerData === '' ? 'display: none;' : null}
 `
 
-const Img = styled.img`
-  width: 87px;
-  height: 86px;
-  background: rgba(150, 150, 150, 0.07);
-  border-radius: 10px;
+const Img = styled.div<{ bg: string }>`
+  border: 1px solid red;
+  width: 62px;
+  height: 62px;
+  background: url(${props => props.bg}), #767676;
+  border-radius: 16px;
 `
 
-const ContentsWrapper = styled.div`
-  width: 478px;
-  margin: 0 33px;
+const TopContentsWrapper = styled.div`
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+`
+
+const BottomContentsWrapper = styled.div`
+  padding-top: 11px;
+  span {
+    margin-right: 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4f4f4f;
+  }
 `
 
 const TextWrapper = styled.div`
   span {
-    margin-right: 33px;
+    font-size: 15px;
+    display: block;
   }
 `
-const RrSwitchButton = styled(RrSwitch)`
 
+const Title = styled.span`
+  margin-bottom: 2px;
+  font-weight: 600;
 `
-
-const OnOffText = styled.span``
+const Message = styled.span`
+  /* font-weight: 400; */
+`
