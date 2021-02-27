@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import styled from 'styled-components'
 import RrAlarmDrawerCard from '../components/organism/RrAlarmDrawerCard'
 import RrAlarmDrawerModal from '../components/organism/RrAlarmDrawerModal'
@@ -46,10 +46,15 @@ const alarmList = [
   },
 ]
 
-const alarmDrawer = () => {
-  // const [clickStatus, setClickStatus] = useState(false)
+const alarmDrawer: FC = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [clickStatus, setClickStatus] = useState(false)
 
-  // const handleClick = () => {}
+  const handleClick = (e) => {
+    console.log('click');
+    console.dir(e.target);
+    setClickStatus(true)
+  }
 
   return (
     <AlarmDrawerWrapper>
@@ -68,6 +73,7 @@ const alarmDrawer = () => {
               day={alarm.day}
               time={alarm.time}
               onoff={alarm.onoff}
+              clickEvent={handleClick}
             />
           ))}
         </AlarmListWrapper>
@@ -86,12 +92,13 @@ const alarmDrawer = () => {
               day={alarm.day}
               time={alarm.time}
               onoff={alarm.onoff}
+              clickEvent={handleClick}
             />
           ))}
         </AlarmListWrapper>
       </AlarmDrawerContentWrapper>
 
-      <RrAlarmDrawerModal userImg="유저사진" userName="유저이름" time="오전 7시" day="월" title="아니요, 뚱인데요" message="스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs" link="www.dsfd.dsf"/>
+      <RrAlarmDrawerModal userImg="유저사진" userName="유저이름" time="오전 7시" day="월" title="아니요, 뚱인데요" message="스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs" link="www.dsfd.dsf" openStatus={clickStatus} />
     </AlarmDrawerWrapper>
   )
 }

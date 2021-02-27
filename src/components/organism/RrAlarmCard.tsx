@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import RrImage from '../atom/RrImage'
 import RrLike from 'components/molecule/RrLike'
 
 const RrAlarmCard = ({ title, content, userName }) => {
@@ -9,7 +8,8 @@ const RrAlarmCard = ({ title, content, userName }) => {
       <RrAlarmCardWrapper>
         <HeaderWrapper>
           <div>
-            <RrImage src={null} size="20" />
+            <img src="image/profile.png" style={{width:'20px'}} />
+            {/* <RrImage path={'~/assets/image/profile.png'} size="20" /> */}
             <HeaderText>{userName}</HeaderText>
           </div>
           <HeaderText>now</HeaderText>
@@ -20,7 +20,8 @@ const RrAlarmCard = ({ title, content, userName }) => {
             <Content>{content}</Content>
           </TextWrapper>
           <ImgWrapper>
-            <RrImage src={null} size="32" />
+          <img src="image/alarmImg.png" style={{width:'32px'}} />
+            {/* <RrImage path={'~/assets/image/profile.png'} size="32" /> */}
           </ImgWrapper>
         </ContentWrapper>
       </RrAlarmCardWrapper>

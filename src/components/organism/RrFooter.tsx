@@ -34,7 +34,7 @@ const RrFooter = () => {
       <FooterWrapper>
         <FooterContent>© E9i4 2021 copyright all rights reserved</FooterContent>
         <FlexRowWrapper>
-          <RrImage src={null} size="16" />
+          {/* <RrImage path={'./assets/image/mashup.png'} size="16" /> */}
           <FooterContent style={{ marginLeft: '10px' }}>
             https://www.mash-up.it
           </FooterContent>

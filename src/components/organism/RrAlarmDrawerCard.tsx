@@ -2,14 +2,25 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import RrUserImg from '../atom/RrUserImg'
 
-const RrAlarmDrawerCard = ({ userImg, userName, title, message, img, day, time, onoff }) => {
+const RrAlarmDrawerCard = ({
+  userImg,
+  userName,
+  title,
+  message,
+  img,
+  day,
+  time,
+  onoff,
+  clickEvent,
+}) => {
   // const [onOff, setOnOff] = useState('비공개')
   // const handleChange = value => {
   //   console.log(value)
   //   value ? setOnOff('공개') : setOnOff('비공개')
   // }
+
   return (
-    <RrAlarmDrawerCardWrapper>
+    <RrAlarmDrawerCardWrapper onClick={clickEvent}>
       <WriterWrapper writerData={userName}>
         <RrUserImg image={userImg} size="" />
         <span>{userName}</span>
@@ -19,7 +30,8 @@ const RrAlarmDrawerCard = ({ userImg, userName, title, message, img, day, time, 
           <Title>{title}</Title>
           <Message>{message}</Message>
         </TextWrapper>
-        <Img bg={img} />
+        <img src="image/alarmImg.png" style={{ width: '62px' }} />
+        {/* <Img bg={img} /> */}
       </TopContentsWrapper>
       <BottomContentsWrapper>
         <span>{day}</span>
@@ -38,13 +50,14 @@ const RrAlarmDrawerCardWrapper = styled.div`
   padding: 16px 16px 11px;
   background: rgba(245, 245, 245, 0.6);
   border-radius: 13px;
+  cursor: pointer;
 `
 const WriterWrapper = styled.div<{ writerData: string }>`
-  ${props => props.writerData === '' ? 'display: none;' : null}
+  ${props => (props.writerData === '' ? 'display: none;' : null)}
 `
 
 const Img = styled.div<{ bg: string }>`
-  border: 1px solid red;
+  border: 1px solid #767676;
   width: 62px;
   height: 62px;
   background: url(${props => props.bg}), #767676;

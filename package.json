@@ -1,4 +1,5 @@
 {
+  "homepage": "https://hyeongpil.github.io/iguana/",
   "name": "openapi-study",
   "version": "0.1.0",
   "private": true,
@@ -6,6 +7,7 @@
     "axios": "0.21.0",
     "classnames": "2.2.6",
     "cross-env": "7.0.2",
+    "gh-pages": "3.1.0",
     "husky": "4.3.0",
     "lodash": "4.17.20",
     "node-plop": "0.26.2",
@@ -46,6 +48,7 @@
     "@types/styled-components": "5.1.4",
     "@types/testing-library__jest-dom": "5.9.5",
     "@types/webpack-env": "1.15.3",
+    "babel-plugin-module-resolver": "4.1.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react-hooks": "4.2.0",
@@ -70,7 +73,9 @@
     "lint:fix": "npm run eslint -- --fix src",
     "lint:css": "stylelint src/**/*.css",
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [

@@ -3,6 +3,7 @@ import RrAlarmCard from 'components/organism/RrAlarmCard'
 import styled from 'styled-components'
 import RrSection from 'components/molecule/RrSection'
 import RrCategoryCard from 'components/organism/RrCategoryCard'
+import { useHistory } from 'react-router-dom'
 
 const categoryList = [
   {
@@ -48,6 +49,7 @@ const alarmCardList = [
 ]
 
 const IndexPage = () => {
+  const history = useHistory()
   return (
     <>
       <Banner />
@@ -58,7 +60,11 @@ const IndexPage = () => {
             <RrCategoryCard title={category.title} content={category.content} />
           ))}
         </CategoryListWrapper>
-        <RrSection title="타이틀" className="mt-60" />
+        <RrSection
+          title="알림 서랍"
+          className="mt-60"
+          onClick={() => history.push("/alarmdrawer")}
+        />
         <AlarmListWrapper>
           {alarmCardList.map(alarmCard => (
             <RrAlarmCard

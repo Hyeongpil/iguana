@@ -12,11 +12,11 @@ function App() {
     <>
       <GlobalStyle />
       <DefaultLayout>
-        <Router>
+        <Router basename="/iguana">
           <Switch>
-            <Route exact path="/category" component={categoryPage} />
+            <Route path="/category" component={categoryPage} />
+            <Route path="/alarmdrawer" component={alarmDrawerPage} />
             <Route exact path="/" component={IndexPage} />
-            <Route exact path="/alarmdrawer" component={alarmDrawerPage} />
           </Switch>
         </Router>
       </DefaultLayout>

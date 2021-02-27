@@ -2,11 +2,17 @@ import React, { FC, HTMLProps } from 'react'
 import styled from 'styled-components'
 import { ArrowRightCircle } from 'react-feather'
 
-const RrSection: FC<HTMLProps<HTMLDivElement>> = ({ className, title }) => {
+const RrSection: FC<HTMLProps<HTMLDivElement>> = ({
+  className,
+  title,
+  onClick,
+}) => {
   return (
     <RrSectionWrapper className={className}>
       <Title>{title}</Title>
-      <StyledArrowRightCircle size="25" />
+      <IconWrapper onClick={onClick}>
+        <StyledArrowRightCircle size="25" />
+      </IconWrapper>
     </RrSectionWrapper>
   )
 }
@@ -25,6 +31,7 @@ const Title = styled.span`
   font-size: 24px;
   line-height: 29px;
 `
+const IconWrapper = styled.div``
 
 const StyledArrowRightCircle = styled(ArrowRightCircle)<{ size: string }>`
   cursor: pointer;

@@ -9,7 +9,8 @@ const RrHeader = () => {
       <MenuWrapper>
         <MenuItem>피드</MenuItem>
         <MenuItem>알람 서랍</MenuItem>
-        <RrUserImg image="" size="34" />
+        <Img src="image/profile.png" style={{width:'34px'}} />
+        {/* <RrUserImg image="" size="34" /> */}
         <UserName>형필</UserName>
       </MenuWrapper>
     </RrHeaderWrapper>
@@ -32,6 +33,12 @@ const MenuWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`
+
+const Img = styled.img`
+  width: 34px;
+  background-color: white;
+  border-radius: 50%
 `
 
 const Logo = styled.div`
