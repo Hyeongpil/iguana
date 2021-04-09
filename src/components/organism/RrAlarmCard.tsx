@@ -8,7 +8,10 @@ const RrAlarmCard = ({ title, content, userName }) => {
       <RrAlarmCardWrapper>
         <HeaderWrapper>
           <div>
-            <img src="image/profile.png" style={{width:'20px'}} />
+            <Img
+              src={process.env.PUBLIC_URL + '/image/profile.png'}
+              alt="프로필"
+            />
             {/* <RrImage path={'~/assets/image/profile.png'} size="20" /> */}
             <HeaderText>{userName}</HeaderText>
           </div>
@@ -20,7 +23,11 @@ const RrAlarmCard = ({ title, content, userName }) => {
             <Content>{content}</Content>
           </TextWrapper>
           <ImgWrapper>
-          <img src="image/alarmImg.png" style={{width:'32px'}} />
+            <img
+              src={process.env.PUBLIC_URL + '/image/alarmImg.png'}
+              style={{ width: '32px' }}
+              alt="이미지"
+            />
             {/* <RrImage path={'~/assets/image/profile.png'} size="32" /> */}
           </ImgWrapper>
         </ContentWrapper>
@@ -75,15 +82,15 @@ const IconWrapper = styled(FlexRowWrapper)`
   margin-top: 13px;
 `
 
-const Img = styled.image`
-  width: 128px;
-  height: 128px;
+const Img = styled.img`
+  width: 20px;
+  height: 20px;
   background: #f2f2f2;
-  border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
   margin-right: 20px;
 `
+
 const Title = styled.span`
   font-style: normal;
   font-weight: 600;

@@ -1,38 +1,43 @@
-import React from 'react';
-import styled from 'styled-components'; 
+import React from 'react'
+import styled from 'styled-components'
 
 const RrInput = ({ type, text }) => {
+  // const inputType = type
 
-    const inputType = type;
+  return (
+    <RrInputWrapper
+      type={type}
+      placeholder={text}
+      value={type === 'submit' ? text : undefined}
+    ></RrInputWrapper>
+  )
+}
 
-    return (
-        <RrInputWrapper type={type} placeholder={text} value={type === 'submit' ? text : undefined}></RrInputWrapper>
-    );
-};
+export default RrInput
 
-export default RrInput;
+const RrInputWrapper = styled.input<{ type: string }>`
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 408px;
+  height: 54px;
+  margin-bottom: 15px;
+  padding: 0 16px;
+  font-size: 16px;
+  line-height: 19px;
 
-const RrInputWrapper = styled.input<{type: string}>`
-    border: 1px solid #E0E0E0;
-    box-sizing: border-box;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 408px;
-    height: 54px;
-    margin-bottom: 15px;
-    padding: 0 16px;
-    font-size: 16px;
-    line-height: 19px;
+  :focus {
+    outline: none;
+  }
 
-    :focus {
-        outline: none;
-    }
-
-    ${props => (props.type === 'submit' ? `
+  ${props =>
+    props.type === 'submit'
+      ? `
     color: #fff;
     font-weight: bold;
     background-color: #222;
     cursor: pointer;
   `
-  : null)}
+      : null}
 `

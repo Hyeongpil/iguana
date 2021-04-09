@@ -50,9 +50,9 @@ const alarmDrawer: FC = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [clickStatus, setClickStatus] = useState(false)
 
-  const handleClick = (e) => {
-    console.log('click');
-    console.dir(e.target);
+  const handleClick = e => {
+    console.log('click')
+    console.dir(e.target)
     setClickStatus(true)
   }
 
@@ -98,7 +98,16 @@ const alarmDrawer: FC = () => {
         </AlarmListWrapper>
       </AlarmDrawerContentWrapper>
 
-      <RrAlarmDrawerModal userImg="유저사진" userName="유저이름" time="오전 7시" day="월" title="아니요, 뚱인데요" message="스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs" link="www.dsfd.dsf" openStatus={clickStatus} />
+      <RrAlarmDrawerModal
+        userImg="유저사진"
+        userName="유저이름"
+        time="오전 7시"
+        day="월"
+        title="아니요, 뚱인데요"
+        message="스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs"
+        link="www.dsfd.dsf"
+        openStatus={clickStatus}
+      />
     </AlarmDrawerWrapper>
   )
 }

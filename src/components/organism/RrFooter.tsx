@@ -1,4 +1,3 @@
-import RrImage from 'components/atom/RrImage'
 import React from 'react'
 import styled from 'styled-components'
 

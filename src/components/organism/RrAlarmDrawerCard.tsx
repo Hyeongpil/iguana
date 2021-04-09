@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import RrUserImg from '../atom/RrUserImg'
 
@@ -30,7 +30,11 @@ const RrAlarmDrawerCard = ({
           <Title>{title}</Title>
           <Message>{message}</Message>
         </TextWrapper>
-        <img src="image/alarmImg.png" style={{ width: '62px' }} />
+        <img
+          src={process.env.PUBLIC_URL + '/image/alarmImg.png'}
+          style={{ width: '62px' }}
+          alt="알람 이미지"
+        />
         {/* <Img bg={img} /> */}
       </TopContentsWrapper>
       <BottomContentsWrapper>
@@ -56,13 +60,13 @@ const WriterWrapper = styled.div<{ writerData: string }>`
   ${props => (props.writerData === '' ? 'display: none;' : null)}
 `
 
-const Img = styled.div<{ bg: string }>`
-  border: 1px solid #767676;
-  width: 62px;
-  height: 62px;
-  background: url(${props => props.bg}), #767676;
-  border-radius: 16px;
-`
+// const Img = styled.div<{ bg: string }>`
+//   border: 1px solid #767676;
+//   width: 62px;
+//   height: 62px;
+//   background: url(${props => props.bg}), #767676;
+//   border-radius: 16px;
+// `
 
 const TopContentsWrapper = styled.div`
   border-bottom: 1px solid #f2f2f2;

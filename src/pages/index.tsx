@@ -52,7 +52,12 @@ const IndexPage = () => {
   const history = useHistory()
   return (
     <>
-      <Banner />
+      <Banner>
+        <Img
+          src={process.env.PUBLIC_URL + '/image/feed.png'}
+          alt="피드 이미지"
+        />
+      </Banner>
       <ContentWrapper>
         <RrSection title="타이틀" className="mt-60" />
         <CategoryListWrapper>
@@ -63,7 +68,7 @@ const IndexPage = () => {
         <RrSection
           title="알림 서랍"
           className="mt-60"
-          onClick={() => history.push("/alarmdrawer")}
+          onClick={() => history.push('/alarmdrawer')}
         />
         <AlarmListWrapper>
           {alarmCardList.map(alarmCard => (
@@ -80,10 +85,16 @@ const IndexPage = () => {
 }
 export default IndexPage
 
-const Banner = styled.div`
+const Banner = styled.section`
   width: 100%;
   height: 300px;
   background: #f2f2f2;
+  display: flex;
+  justify-content: flex-end;
+`
+
+const Img = styled.img`
+  margin-right: 10%;
 `
 const ContentWrapper = styled.div`
   display: flex;
