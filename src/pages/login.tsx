@@ -18,7 +18,7 @@ const login = () => {
           <SubmitWrapper>
             <RrInput type="submit" text="애플 아이디로 로그인" />
             <RrIcon
-              src="image/Icon-Apple.png"
+              src={process.env.PUBLIC_URL + '/image/Icon-Apple.png'}
               alt="Icon-Apple"
               size="22"
               top="16"
@@ -28,7 +28,10 @@ const login = () => {
         </Form>
       </LoginInputWrapper>
       <LoginImageWrapper>
-        <Img src="image/loginImg.png" alt="login-image" />
+        <Img
+          src={process.env.PUBLIC_URL + '/image/loginImg.png'}
+          alt="login-image"
+        />
       </LoginImageWrapper>
     </LoginWrapper>
   )

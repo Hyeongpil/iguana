@@ -2,12 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const RrUserImg = ({ image, size }) => {
-  return (
-    <RrUserImgWrapper
-      size={size}
-      src="/assets/image/profile.png"
-    ></RrUserImgWrapper>
-  )
+  return <RrUserImgWrapper size={size} src={image}></RrUserImgWrapper>
 }
 
 export default RrUserImg
