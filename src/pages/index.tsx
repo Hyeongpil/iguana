@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import RrSection from 'components/molecule/RrSection'
 import RrCategoryCard from 'components/organism/RrCategoryCard'
 import { useHistory } from 'react-router-dom'
+import AlarmRepository from '../repositories/AlarmRepository'
 
 const categoryList = [
   {
@@ -50,6 +51,10 @@ const alarmCardList = [
 
 const IndexPage = () => {
   const history = useHistory()
+  const repository = new AlarmRepository()
+  repository.FetchAlarms().then(res => {
+    console.log('res :', res)
+  })
   return (
     <>
       <Banner>
