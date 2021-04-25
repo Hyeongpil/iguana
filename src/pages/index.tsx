@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import RrAlarmCard from 'components/organism/RrAlarmCard'
 import styled from 'styled-components'
 import RrSection from 'components/molecule/RrSection'
 import RrCategoryCard from 'components/organism/RrCategoryCard'
 import { useHistory } from 'react-router-dom'
 import AlarmRepository from '../repositories/AlarmRepository'
+import { Alarm } from 'entities/Alarm'
 
 const categoryList = [
   {
@@ -21,40 +22,20 @@ const categoryList = [
   },
 ]
 
-const alarmCardList = [
-  {
-    title: '알람 제목',
-    content: '알람 내용 알람 내용',
-    userName: '최형필',
-  },
-  {
-    title: '알람 제목',
-    content: '알람 내용 알람 내용',
-    userName: '최형필',
-  },
-  {
-    title: '알람 제목',
-    content: '알람 내용 알람 내용',
-    userName: '최형필',
-  },
-  {
-    title: '알람 제목',
-    content: '알람 내용 알람 내용',
-    userName: '최형필',
-  },
-  {
-    title: '알람 제목',
-    content: '알람 내용 알람 내용',
-    userName: '최형필',
-  },
-]
-
 const IndexPage = () => {
+  const [alarms, setAlarms] = useState<Alarm[]>([])
+
   const history = useHistory()
   const repository = new AlarmRepository()
-  repository.FetchAlarms().then(res => {
-    console.log('res :', res)
-  })
+
+  const fetchAlarms = async () => {
+    setAlarms(await repository.FetchAlarms())
+  }
+
+  useEffect(() => {
+    fetchAlarms()
+  }, [])
+
   return (
     <>
       <Banner>
@@ -76,11 +57,11 @@ const IndexPage = () => {
           onClick={() => history.push('/alarmdrawer')}
         />
         <AlarmListWrapper>
-          {alarmCardList.map(alarmCard => (
+          {alarms.map(alarm => (
             <RrAlarmCard
-              title={alarmCard.title}
-              content={alarmCard.content}
-              userName={alarmCard.userName}
+              title={alarm.title}
+              content={alarm.description}
+              userName={alarm.user.nickname}
             />
           ))}
         </AlarmListWrapper>

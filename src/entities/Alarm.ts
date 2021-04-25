@@ -3,6 +3,7 @@ export class Alarm {
   id: number
   title: string
   cronData: string
+  description: string
   shareUrl: string
   imageUrl: string
   scrapCnt: number
