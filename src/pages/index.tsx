@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import RrAlarmCard from 'components/organism/RrAlarmCard'
 import styled from 'styled-components'
 import RrSection from 'components/molecule/RrSection'
@@ -26,15 +26,15 @@ const IndexPage = () => {
   const [alarms, setAlarms] = useState<Alarm[]>([])
 
   const history = useHistory()
-  const repository = new AlarmRepository()
+  const repository = useMemo(() => new AlarmRepository(), [])
 
-  const fetchAlarms = async () => {
+  const fetchAlarms = useCallback(async () => {
     setAlarms(await repository.FetchAlarms())
-  }
+  }, [repository])
 
   useEffect(() => {
     fetchAlarms()
-  }, [])
+  }, [fetchAlarms])
 
   return (
     <>
