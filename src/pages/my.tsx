@@ -5,7 +5,7 @@ import RrText from '../components/atom/RrText'
 import RrAccount from 'components/organism/RrAccount'
 import RrNotice from 'components/organism/RrNotice'
 import RrQna from 'components/organism/RrQna'
-import RrNoticeConts from 'components/organism/RrNoticeConts'
+// import RrNoticeConts from 'components/organism/RrNoticeConts'
 
 const myPage = () => {
   return (

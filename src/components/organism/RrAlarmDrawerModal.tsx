@@ -4,41 +4,35 @@ import RrUserImg from '../atom/RrUserImg'
 import RrLike from '../molecule/RrLike'
 
 const RrAlarmDrawerModal = ({
-  userImg,
-  userName,
-  time,
-  day,
-  title,
-  message,
-  link,
+  closeFunction,
   openStatus,
+  clickedAlarmData,
 }) => {
-  // const [show, setShow] = useState(true)
-
-  const handleClick = () => {
-    // setShow(false)
+  const onClickCloseButton = () => {
+    closeFunction(false)
   }
+  console.log(clickedAlarmData)
 
   return (
     <RrAlarmDrawerModalWrapper status={openStatus}>
       <RrAlarmDrawerModalContentsWrapper>
         <LeftContentWrapper>
           <UserWrapper>
-            <RrUserImg image={userImg} size="" />
-            <span>{userName}</span>
+            <RrUserImg image="" size="" />
+            <span>user Name</span>
           </UserWrapper>
           <RrLikeComponent count="" />
         </LeftContentWrapper>
         <RightContentWrapper>
-          <Time>{time}</Time>
-          <Day>{day}</Day>
+          <Time>clickedAlarmData.time</Time>
+          <Day>clickedAlarmData.day</Day>
           <MessageWrapper>
-            <Title>{title}</Title>
-            <Message>{message}</Message>
+            <Title>clickedAlarmData.title</Title>
+            <Message>clickedAlarmData.message</Message>
           </MessageWrapper>
           <MessageWrapper>
             <Title>링크</Title>
-            <A href={link}>{link}</A>
+            <A href="www.dsfd.dsf">www.dsfd.dsf</A>
           </MessageWrapper>
           <ShareButton>
             <svg
@@ -56,7 +50,7 @@ const RrAlarmDrawerModal = ({
             <span>공유하기</span>
           </ShareButton>
         </RightContentWrapper>
-        <CloseButton onClick={handleClick}>
+        <CloseButton onClick={onClickCloseButton}>
           <svg
             width="14"
             height="13"
@@ -109,7 +103,6 @@ const RrAlarmDrawerModalContentsWrapper = styled.div`
   border-radius: 13px;
 
   display: flex;
-  justify-content: space-between;
 `
 
 const LeftContentWrapper = styled.div`
@@ -120,6 +113,10 @@ const LeftContentWrapper = styled.div`
   background-size: cover;
   border-radius: 16px;
   position: relative;
+
+  // :nth-child(1) {
+  //   outline: 2px solid red;
+  // }
 `
 
 const UserWrapper = styled.div`
@@ -136,6 +133,9 @@ const UserWrapper = styled.div`
 
 const RrLikeComponent = styled(RrLike)`
   outline: 1px solid lime;
+  position: absolute;
+  top: 0;
+  right: 0;
 `
 
 const RightContentWrapper = styled.div``

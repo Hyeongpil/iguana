@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import RrDeleteModal from './RrDeleteModal'
 
 const RrAccount = () => {
+  const [clickStatus, setClickStatus] = useState(false)
+  const handleClick = () => {
+    setClickStatus(true)
+  }
+
+  const closeModal = (data: boolean) => {
+    setClickStatus(data)
+  }
+
   return (
     <RrAccountWrapper>
       <ContentsWrapper>
@@ -25,10 +35,11 @@ const RrAccount = () => {
             기록을 남기고 싶지 않은 경우 알림 삭제 이후 탈퇴를 진행해주세요.
           </Description>
           <ButtonWrapper>
-            <Button>탈퇴하기</Button>
+            <Button onClick={handleClick}>탈퇴하기</Button>
           </ButtonWrapper>
         </Contents>
       </ContentsWrapper>
+      <RrDeleteModal openStatus={clickStatus} closeFunction={closeModal} />
     </RrAccountWrapper>
   )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { FC, useState } from 'react'
 import styled from 'styled-components'
 import RrAlarmDrawerCard from '../components/organism/RrAlarmDrawerCard'
@@ -9,7 +10,23 @@ const alarmList = [
     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
     img: 'img url',
     day: '월',
-    time: '오전 7시',
+    time: '오전 4시',
+    onoff: '공개 알림',
+  },
+  {
+    title: '아니요, 뚱인데요',
+    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+    img: 'img url',
+    day: '월',
+    time: '오전 5시',
+    onoff: '공개 알림',
+  },
+  {
+    title: '아니요, 뚱인데요',
+    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+    img: 'img url',
+    day: '월',
+    time: '오전 6시',
     onoff: '공개 알림',
   },
   {
@@ -25,35 +42,25 @@ const alarmList = [
     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
     img: 'img url',
     day: '월',
-    time: '오전 7시',
-    onoff: '공개 알림',
-  },
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 7시',
-    onoff: '공개 알림',
-  },
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 7시',
+    time: '오전 8시',
     onoff: '공개 알림',
   },
 ]
 
 const alarmDrawer: FC = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [clickStatus, setClickStatus] = useState(false)
+  const [alarmData, setAlarmData] = useState()
 
-  const handleClick = e => {
+  const handleClick = data => {
     console.log('click')
-    console.dir(e.target)
+    console.log(data)
     setClickStatus(true)
+    setAlarmData(data)
+  }
+
+  const closeModal = data => {
+    console.log(data)
+    setClickStatus(data)
   }
 
   return (
@@ -73,7 +80,9 @@ const alarmDrawer: FC = () => {
               day={alarm.day}
               time={alarm.time}
               onoff={alarm.onoff}
-              clickEvent={handleClick}
+              clickEvent={() => {
+                handleClick(alarm)
+              }}
             />
           ))}
         </AlarmListWrapper>
@@ -99,14 +108,9 @@ const alarmDrawer: FC = () => {
       </AlarmDrawerContentWrapper>
 
       <RrAlarmDrawerModal
-        userImg="유저사진"
-        userName="유저이름"
-        time="오전 7시"
-        day="월"
-        title="아니요, 뚱인데요"
-        message="스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs"
-        link="www.dsfd.dsf"
+        closeFunction={closeModal}
         openStatus={clickStatus}
+        clickedAlarmData={alarmData}
       />
     </AlarmDrawerWrapper>
   )
