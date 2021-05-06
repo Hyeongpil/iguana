@@ -26,6 +26,8 @@ const IndexPage = () => {
   const [alarms, setAlarms] = useState<Alarm[]>([])
 
   const history = useHistory()
+  console.log(history)
+
   const repository = useMemo(() => new AlarmRepository(), [])
 
   const fetchAlarms = useCallback(async () => {

@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import RrHeaderModal from './RrHeaderModal'
 
 const RrHeader = () => {
+  const [showModal, setShowModal] = useState(false)
+  const onMouseover = () => {
+    console.log('mouseover')
+    setShowModal(true)
+  }
+
+  const showFunction = data => {
+    setShowModal(data)
+  }
+
   return (
     <RrHeaderWrapper>
       <Logo>Rrrr</Logo>
@@ -11,8 +22,9 @@ const RrHeader = () => {
 
         <Img src={process.env.PUBLIC_URL + '/image/profile.png'} />
         {/* <RrUserImg image="" size="34" /> */}
-        <UserName>형필</UserName>
+        <UserName onMouseOver={onMouseover}>형필</UserName>
       </MenuWrapper>
+      {showModal ? <RrHeaderModal showFunction={showFunction} /> : null}
     </RrHeaderWrapper>
   )
 }
@@ -27,6 +39,7 @@ const RrHeaderWrapper = styled.div`
   padding-left: 10%;
   padding-right: 10%;
   align-items: center;
+  position: relative;
 `
 
 const MenuWrapper = styled.div`
