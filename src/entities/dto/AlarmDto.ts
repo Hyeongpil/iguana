@@ -1,4 +1,5 @@
 import { Alarm } from '../Alarm'
+import { User } from '../User'
 
 export interface IAlarmState {
   isActive: boolean
@@ -14,6 +15,12 @@ export interface ICalendarCondition {
   hour: number
   minute: number
   second: number
+}
+
+export interface IAlarmDrawer extends Alarm {
+  calendarCondition: ICalendarCondition
+  alarmState: IAlarmState
+  user: User
 }
 
 export enum AlarmType {

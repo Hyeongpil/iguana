@@ -1,61 +1,76 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import RrAlarmDrawerCard from '../components/organism/RrAlarmDrawerCard'
 import RrAlarmDrawerModal from '../components/organism/RrAlarmDrawerModal'
+import AlarmRepository from '../repositories/AlarmRepository'
+import { IAlarmDrawer } from 'entities/dto/AlarmDto'
 
-const alarmList = [
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 4시',
-    onoff: '공개 알림',
-  },
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 5시',
-    onoff: '공개 알림',
-  },
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 6시',
-    onoff: '공개 알림',
-  },
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 7시',
-    onoff: '공개 알림',
-  },
-  {
-    title: '아니요, 뚱인데요',
-    message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
-    img: 'img url',
-    day: '월',
-    time: '오전 8시',
-    onoff: '공개 알림',
-  },
-]
+// const alarmList = [
+//   {
+//     title: '아니요, 뚱인데요',
+//     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+//     img: 'img url',
+//     day: '월',
+//     time: '오전 4시',
+//     onoff: '공개 알림',
+//   },
+//   {
+//     title: '아니요, 뚱인데요',
+//     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+//     img: 'img url',
+//     day: '월',
+//     time: '오전 5시',
+//     onoff: '공개 알림',
+//   },
+//   {
+//     title: '아니요, 뚱인데요',
+//     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+//     img: 'img url',
+//     day: '월',
+//     time: '오전 6시',
+//     onoff: '공개 알림',
+//   },
+//   {
+//     title: '아니요, 뚱인데요',
+//     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+//     img: 'img url',
+//     day: '월',
+//     time: '오전 7시',
+//     onoff: '공개 알림',
+//   },
+//   {
+//     title: '아니요, 뚱인데요',
+//     message: '스펀지밥 전편 보기. dsfdfsdfsfsdfsdfsdfsdfsdfsfsdfsfs',
+//     img: 'img url',
+//     day: '월',
+//     time: '오전 8시',
+//     onoff: '공개 알림',
+//   },
+// ]
 
 const alarmDrawer: FC = () => {
   const [clickStatus, setClickStatus] = useState(false)
-  const [alarmData, setAlarmData] = useState()
+  // const [alarmData, setAlarmData] = useState()
+
+  const [alarms, setAlarms] = useState<IAlarmDrawer[]>([])
+
+  const repository = useMemo(() => new AlarmRepository(), [])
+
+  const fetchAlarms = useCallback(async () => {
+    setAlarms((await repository.FetchAlarms()) as IAlarmDrawer[])
+  }, [repository])
+
+  useEffect(() => {
+    fetchAlarms()
+  }, [fetchAlarms])
 
   const handleClick = data => {
     console.log('click')
     console.log(data)
     setClickStatus(true)
-    setAlarmData(data)
+    // setAlarmData(data)
+    setAlarms(data)
   }
 
   const closeModal = data => {
@@ -69,17 +84,17 @@ const alarmDrawer: FC = () => {
       <AlarmDrawerContentWrapper>
         <SubTitle>활성화 된 알림</SubTitle>
         <AlarmListWrapper>
-          {alarmList.map((alarm, index) => (
+          {alarms.map(alarm => (
             <RrAlarmDrawerCard
-              key={index}
+              key={alarm.id}
               userImg=""
-              userName=""
+              userName={alarm.user.nickname}
               title={alarm.title}
-              message={alarm.message}
-              img={alarm.img}
-              day={alarm.day}
-              time={alarm.time}
-              onoff={alarm.onoff}
+              message={alarm.description}
+              img={alarm.imageUrl}
+              day={alarm.calendarCondition.dayOfWeek}
+              time={alarm.calendarCondition.hour}
+              onoff={alarm.alarmState.isActive}
               clickEvent={() => {
                 handleClick(alarm)
               }}
@@ -90,18 +105,20 @@ const alarmDrawer: FC = () => {
       <AlarmDrawerContentWrapper>
         <SubTitle>비활성화 된 알림</SubTitle>
         <AlarmListWrapper>
-          {alarmList.map((alarm, index) => (
+          {alarms.map(alarm => (
             <RrAlarmDrawerCard
-              key={index}
+              key={alarm.id}
               userImg=""
-              userName=""
+              userName={alarm.user.nickname}
               title={alarm.title}
-              message={alarm.message}
-              img={alarm.img}
-              day={alarm.day}
-              time={alarm.time}
-              onoff={alarm.onoff}
-              clickEvent={handleClick}
+              message={alarm.description}
+              img={alarm.imageUrl}
+              day={alarm.calendarCondition.dayOfWeek}
+              time={alarm.calendarCondition.hour}
+              onoff={alarm.alarmState.isActive}
+              clickEvent={() => {
+                handleClick(alarm)
+              }}
             />
           ))}
         </AlarmListWrapper>
@@ -110,7 +127,7 @@ const alarmDrawer: FC = () => {
       <RrAlarmDrawerModal
         closeFunction={closeModal}
         openStatus={clickStatus}
-        clickedAlarmData={alarmData}
+        clickedAlarmData={alarms}
       />
     </AlarmDrawerWrapper>
   )

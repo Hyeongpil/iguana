@@ -11,8 +11,6 @@ const RrAlarmDrawerModal = ({
   const onClickCloseButton = () => {
     closeFunction(false)
   }
-  console.log(closeFunction)
-
   console.log(clickedAlarmData)
 
   return (
@@ -20,21 +18,21 @@ const RrAlarmDrawerModal = ({
       <RrAlarmDrawerModalContentsWrapper>
         <LeftContentWrapper>
           <UserWrapper>
-            <RrUserImg image="" size="" />
-            <span>user Name</span>
+            <RrUserImg image={clickedAlarmData.imageUrl} size="" />
+            <span>clickedAlarmData.user.nickname</span>
           </UserWrapper>
           <RrLikeComponent count="" />
         </LeftContentWrapper>
         <RightContentWrapper>
-          <Time>clickedAlarmData.time</Time>
-          <Day>clickedAlarmData.day</Day>
+          <Time>clickedAlarmData.calendarCondition.hour</Time>
+          <Day>clickedAlarmData.calendarCondition.dayOfWeek</Day>
           <MessageWrapper>
             <Title>clickedAlarmData.title</Title>
-            <Message>clickedAlarmData.message</Message>
+            <Message>clickedAlarmData.descriptions</Message>
           </MessageWrapper>
           <MessageWrapper>
             <Title>링크</Title>
-            <A href="www.dsfd.dsf">www.dsfd.dsf</A>
+            <A href="">clickedAlarmData.url</A>
           </MessageWrapper>
           <ShareButton>
             <svg
