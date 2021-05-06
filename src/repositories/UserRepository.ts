@@ -16,4 +16,8 @@ export default class UserRepository {
   async DeleteUser(): Promise<User> {
     return await APIClient.shared.request(new UserAPI.DeleteUser())
   }
+
+  async CreateNickname(params: string): Promise<User> {
+    return await APIClient.shared.request(new UserAPI.CreateNickname(params))
+  }
 }

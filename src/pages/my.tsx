@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Route } from 'react-router-dom'
+import { NavLink, Route, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import RrText from '../components/atom/RrText'
 import RrAccount from 'components/organism/RrAccount'
@@ -38,9 +38,9 @@ const myPage = () => {
           <Route path="/my/account" component={RrAccount} />
           <Route path="/my/notice" component={RrNotice} />
           <Route path="/my/qna" component={RrQna} />
-          {/* <Route path="/my/notice/:id" component={RrNoticeConts} /> */}
         </ContentsWrapper>
       </FlexRowWrapper>
+      <Redirect to="/my/account" />
     </MyPageWrapper>
   )
 }

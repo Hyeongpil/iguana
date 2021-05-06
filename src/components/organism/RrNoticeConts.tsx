@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
-const RrNoticeConts = () => {
+const RrNoticeConts = ({ showFunction, data }) => {
+  useEffect(() => {
+    return () => {
+      showFunction(false)
+    }
+  })
   return (
     <RrNoticeContsWrapper>
-      <Title>서비스 오픈 안내</Title>
-      <Date>2021. 03. 13</Date>
+      <Title>{data.desc}</Title>
+      <Date>{data.date}</Date>
       <Description>
         안녕하세요. Rrrr입니다. <br />
         <br /> 서비스 오픈 관련하여 안내드립니다. <br />
@@ -24,17 +29,10 @@ const RrNoticeConts = () => {
 export default RrNoticeConts
 
 const RrNoticeContsWrapper = styled.div`
-  outline: 1px solid red;
-  //   width: 100%;
-  //   height: 100%;
   margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #fff;
-
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
 `
 
 const Title = styled.h3`

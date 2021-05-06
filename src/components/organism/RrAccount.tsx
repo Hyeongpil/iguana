@@ -1,9 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import styled from 'styled-components'
 import RrDeleteModal from './RrDeleteModal'
+import UserRepository from 'repositories/UserRepository'
 
 const RrAccount = () => {
   const [clickStatus, setClickStatus] = useState(false)
+  const [nickname, setNickname] = useState('')
+
+  const repository = useMemo(() => new UserRepository(), [])
+
+  const createNickname = useCallback(
+    async nickname => {
+      await repository.CreateNickname(nickname)
+    },
+    [repository],
+  )
+
+  const onSubmitNickname = event => {
+    event.preventDefault()
+    createNickname(nickname).then(res => {
+      console.log(res)
+    })
+  }
+
   const handleClick = () => {
     setClickStatus(true)
   }
@@ -12,16 +31,21 @@ const RrAccount = () => {
     setClickStatus(data)
   }
 
+  const onKeyUpInput = event => {
+    const inputText = event.target.value
+    setNickname(inputText)
+  }
+
   return (
     <RrAccountWrapper>
       <ContentsWrapper>
         <Title>프로필 정보</Title>
         <Contents>
           <SemiTitle>닉네임</SemiTitle>
-          <Form>
-            <input type="text" />
+          <Form onSubmit={onSubmitNickname}>
+            <input type="text" onKeyUp={onKeyUpInput} />
             <input type="submit" value="저장하기" />
-            <span>사용 가능한 닉네임 입니다.</span>
+            {nickname !== '' ? <span>사용 가능한 닉네임 입니다.</span> : null}
           </Form>
         </Contents>
       </ContentsWrapper>

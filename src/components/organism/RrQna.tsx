@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 const data = [
   { q: 'Rrrr의 사용법을 알고 싶어.' },
-  { q: 'Rrrr의 사용법을 알고 싶어.' },
-  { q: 'Rrrr의 사용법을 알고 싶어.' },
-  { q: 'Rrrr의 사용법을 알고 싶어.' },
+  { q: '알림을 잘못 만들었어.' },
+  { q: '알림을 공유하고 싶어.' },
+  { q: '삭제한 알림을 복원시키고 싶어.' },
 ]
 
 const RrQna = () => {

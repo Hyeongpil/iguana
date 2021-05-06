@@ -11,6 +11,8 @@ const RrAlarmDrawerModal = ({
   const onClickCloseButton = () => {
     closeFunction(false)
   }
+  console.log(closeFunction)
+
   console.log(clickedAlarmData)
 
   return (

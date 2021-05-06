@@ -13,6 +13,7 @@ const RrDeleteModal = ({ openStatus, closeFunction }) => {
     deleteUser().then(res => {
       console.log(res)
     })
+    closeFunction(false)
   }
 
   const onClickCloseButton = () => {
