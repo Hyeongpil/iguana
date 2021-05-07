@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import RrUserImg from '../atom/RrUserImg'
 import RrLike from '../molecule/RrLike'
+import { Alarm } from '../../entities/Alarm'
 
-const RrAlarmDrawerModal = ({
+interface RrAlarmDrawerModalProps {
+  closeFunction: Function
+  openStatus: boolean
+  clickedAlarmData: Alarm
+}
+const RrAlarmDrawerModal: FC<RrAlarmDrawerModalProps> = ({
   closeFunction,
   openStatus,
   clickedAlarmData,
@@ -11,28 +17,28 @@ const RrAlarmDrawerModal = ({
   const onClickCloseButton = () => {
     closeFunction(false)
   }
-  console.log(clickedAlarmData)
+  console.log('clickedAlarmData', clickedAlarmData)
 
   return (
     <RrAlarmDrawerModalWrapper status={openStatus}>
       <RrAlarmDrawerModalContentsWrapper>
         <LeftContentWrapper>
           <UserWrapper>
-            <RrUserImg image={clickedAlarmData.imageUrl} size="" />
-            <span>clickedAlarmData.user.nickname</span>
+            {/* <RrUserImg image={clickedAlarmData.imageUrl} size="" /> */}
+            <span>{clickedAlarmData.id}</span>
           </UserWrapper>
           <RrLikeComponent count="" />
         </LeftContentWrapper>
         <RightContentWrapper>
-          <Time>clickedAlarmData.calendarCondition.hour</Time>
-          <Day>clickedAlarmData.calendarCondition.dayOfWeek</Day>
+          <Time>오전 7:00</Time>
+          <Day>월/수/목</Day>
           <MessageWrapper>
-            <Title>clickedAlarmData.title</Title>
-            <Message>clickedAlarmData.descriptions</Message>
+            <Title>{clickedAlarmData.title}</Title>
+            <Message>{clickedAlarmData.description}</Message>
           </MessageWrapper>
           <MessageWrapper>
             <Title>링크</Title>
-            <A href="">clickedAlarmData.url</A>
+            <A href="">{clickedAlarmData.shareUrl}</A>
           </MessageWrapper>
           <ShareButton>
             <svg
@@ -138,7 +144,9 @@ const RrLikeComponent = styled(RrLike)`
   right: 0;
 `
 
-const RightContentWrapper = styled.div``
+const RightContentWrapper = styled.div`
+  width: 50%;
+`
 
 const Time = styled.h3`
   margin: 0 0 5px;

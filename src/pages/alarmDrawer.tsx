@@ -5,6 +5,7 @@ import RrAlarmDrawerCard from '../components/organism/RrAlarmDrawerCard'
 import RrAlarmDrawerModal from '../components/organism/RrAlarmDrawerModal'
 import AlarmRepository from '../repositories/AlarmRepository'
 import { IAlarmDrawer } from 'entities/dto/AlarmDto'
+import { Alarm } from '../entities/Alarm'
 
 // const alarmList = [
 //   {
@@ -51,7 +52,7 @@ import { IAlarmDrawer } from 'entities/dto/AlarmDto'
 
 const alarmDrawer: FC = () => {
   const [clickStatus, setClickStatus] = useState(false)
-  // const [alarmData, setAlarmData] = useState()
+  const [alarmData, setAlarmData] = useState(new Alarm())
 
   const [alarms, setAlarms] = useState<IAlarmDrawer[]>([])
 
@@ -69,8 +70,8 @@ const alarmDrawer: FC = () => {
     console.log('click')
     console.log(data)
     setClickStatus(true)
-    // setAlarmData(data)
-    setAlarms(data)
+    setAlarmData(data)
+    // setAlarms(data)
   }
 
   const closeModal = data => {
@@ -127,7 +128,7 @@ const alarmDrawer: FC = () => {
       <RrAlarmDrawerModal
         closeFunction={closeModal}
         openStatus={clickStatus}
-        clickedAlarmData={alarms}
+        clickedAlarmData={alarmData}
       />
     </AlarmDrawerWrapper>
   )

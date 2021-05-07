@@ -85,7 +85,7 @@ const NavWrapper = styled.ul`
 const ContentsWrapper = styled.div`
   border-radius: 16px;
   width: calc(100% - 200px);
-  margin-left: 129px;
+  margin-left: 100px;
   padding: 0 30px;
   background-color: #fff;
 `

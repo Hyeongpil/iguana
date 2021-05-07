@@ -18,7 +18,7 @@ const RrAlarmCard: FC<RrAlarmCardProps> = ({ alarm }: RrAlarmCardProps) => {
               alt="프로필"
             />
             {/* <RrImage path={'~/assets/image/profile.png'} size="20" /> */}
-            <HeaderText>{alarm.title}</HeaderText>
+            <HeaderText>{alarm.user.nickname}</HeaderText>
           </div>
           <IconWrapper>
             <RrIconCount count={alarm.scrapCnt} imgName="scrap" />

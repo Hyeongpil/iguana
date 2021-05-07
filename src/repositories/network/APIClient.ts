@@ -15,7 +15,7 @@ export class APIClient {
   static shared = new APIClient()
 
   // URL 설정
-  baseDomain = 'https://iguana.ga/api/v1'
+  baseDomain = 'https://e9i4.shop/api/v1'
   baseURL = `${this.baseDomain}`
 
   // Timeout 설정

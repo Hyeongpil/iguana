@@ -10,7 +10,7 @@ import { Alarm } from 'entities/Alarm'
 const categoryList = [
   {
     title: '명언',
-    content: '졸리다',
+    content: '당신을 자극할 명언 알림',
   },
   {
     title: '응원',
@@ -19,6 +19,22 @@ const categoryList = [
   {
     title: '건강',
     content: '몸짱 되야지',
+  },
+  {
+    title: '쓴소리',
+    content: '자극이 필요할 땐?',
+  },
+  {
+    title: '공부 자극',
+    content: '지금 당장 공부 시작!',
+  },
+  {
+    title: '직장인',
+    content: '직장인들 다 모여!',
+  },
+  {
+    title: '학생',
+    content: '공부하느라 힘들지?',
   },
 ]
 
@@ -47,14 +63,14 @@ const IndexPage = () => {
         />
       </Banner>
       <ContentWrapper>
-        <RrSection title="타이틀" className="mt-60" />
+        <RrSection title="테마 RRRR" className="mt-60" />
         <CategoryListWrapper>
           {categoryList.map(category => (
             <RrCategoryCard title={category.title} content={category.content} />
           ))}
         </CategoryListWrapper>
         <RrSection
-          title="알림 서랍"
+          title="인기 RRRR"
           className="mt-60"
           onClick={() => history.push('/alarmdrawer')}
         />
@@ -91,6 +107,7 @@ const ContentWrapper = styled.div`
 const CategoryListWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 40px;
 `
 const AlarmListWrapper = styled.div`

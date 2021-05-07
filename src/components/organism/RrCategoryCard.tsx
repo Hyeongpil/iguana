@@ -23,7 +23,7 @@ const RrCategoryCardWrapper = styled.div`
   background: #ffffff;
   box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
-  margin-right: 20px;
+  margin-right: 40px;
 `
 const ImgWrapper = styled.div`
   background: #eeeeee;
