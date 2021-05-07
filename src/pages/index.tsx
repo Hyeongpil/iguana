@@ -58,11 +58,7 @@ const IndexPage = () => {
         />
         <AlarmListWrapper>
           {alarms.map(alarm => (
-            <RrAlarmCard
-              title={alarm.title}
-              content={alarm.description}
-              userName={alarm.user.nickname}
-            />
+            <RrAlarmCard alarm={alarm} />
           ))}
         </AlarmListWrapper>
       </ContentWrapper>

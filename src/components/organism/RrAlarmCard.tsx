@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
-import RrLike from 'components/molecule/RrLike'
+import RrIconCount from 'components/molecule/RrIconCount'
+import { Alarm } from 'entities/Alarm'
 
-const RrAlarmCard = ({ title, content, userName }) => {
+interface RrAlarmCardProps {
+  alarm: Alarm
+}
+
+const RrAlarmCard: FC<RrAlarmCardProps> = ({ alarm }: RrAlarmCardProps) => {
   return (
     <FlexColWrapper>
       <RrAlarmCardWrapper>
@@ -13,14 +18,17 @@ const RrAlarmCard = ({ title, content, userName }) => {
               alt="프로필"
             />
             {/* <RrImage path={'~/assets/image/profile.png'} size="20" /> */}
-            <HeaderText>{userName}</HeaderText>
+            <HeaderText>{alarm.title}</HeaderText>
           </div>
-          <HeaderText>now</HeaderText>
+          <IconWrapper>
+            <RrIconCount count={alarm.scrapCnt} imgName="scrap" />
+            <RrIconCount count={alarm.likeCnt} imgName="like" />
+          </IconWrapper>
         </HeaderWrapper>
         <ContentWrapper>
           <TextWrapper>
-            <Title>{title}</Title>
-            <Content>{content}</Content>
+            <Title>{alarm.title}</Title>
+            <Content>{alarm.description}</Content>
           </TextWrapper>
           <ImgWrapper>
             <img
@@ -32,10 +40,6 @@ const RrAlarmCard = ({ title, content, userName }) => {
           </ImgWrapper>
         </ContentWrapper>
       </RrAlarmCardWrapper>
-      <IconWrapper>
-        <RrLike count="123" />
-        <RrLike count="103" />
-      </IconWrapper>
     </FlexColWrapper>
   )
 }
@@ -79,7 +83,6 @@ const ImgWrapper = styled(FlexRowWrapper)`
 
 const IconWrapper = styled(FlexRowWrapper)`
   justify-content: flex-end;
-  margin-top: 13px;
 `
 
 const Img = styled.img`
@@ -113,7 +116,6 @@ const HeaderText = styled.span`
   font-size: 13px;
   line-height: 18px;
   letter-spacing: -0.08px;
-  color: #3f3f3f;
+  color: #bdbdbd;
   opacity: 95%;
-  margin-left: 6px;
 `
