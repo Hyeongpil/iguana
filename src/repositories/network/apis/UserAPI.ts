@@ -37,4 +37,14 @@ export namespace UserAPI {
       this.path = `${USER}`
     }
   }
+
+  export class CreateNickname implements APIRequest<User> {
+    response: User
+    path: string
+    method = HTTPMethod.PUT
+    parse = (data: AxiosResponse) => data.data
+    constructor(params: string) {
+      this.path = `${USER}`
+    }
+  }
 }

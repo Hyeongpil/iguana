@@ -48,7 +48,7 @@ export default RrFooter
 const RrFooterWrapper = styled.footer`
   height: 300px;
   background-color: #222222;
-  margin-top: 50px;
+  // margin-top: 50px;
   padding-top: 34px;
   padding-left: 10%;
   padding-right: 10%;

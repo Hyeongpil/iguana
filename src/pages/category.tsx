@@ -15,6 +15,7 @@ const CategoryWrapper = styled.div`
   margin-left: 100px;
   margin-right: 100px;
   margin-top: 20px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
 `

@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import RrHeaderModal from './RrHeaderModal'
+import { Link } from 'react-router-dom'
 
 const RrHeader = () => {
+  const [showModal, setShowModal] = useState(false)
+  const onMouseover = () => {
+    console.log('mouseover')
+    setShowModal(true)
+  }
+
+  const showFunction = data => {
+    setShowModal(data)
+  }
+
   return (
     <RrHeaderWrapper>
-      <Logo>Rrrr</Logo>
+      <Logo>
+        <Link to="/">Rrrr</Link>
+      </Logo>
       <MenuWrapper>
-        <MenuItem>피드</MenuItem>
-        <MenuItem>알람 서랍</MenuItem>
+        <MenuItem to="">피드</MenuItem>
+        <MenuItem to="/alarmdrawer">알람 서랍</MenuItem>
 
         <Img src={process.env.PUBLIC_URL + '/image/profile.png'} />
         {/* <RrUserImg image="" size="34" /> */}
-        <UserName>형필</UserName>
+        <UserName onMouseOver={onMouseover}>형필</UserName>
       </MenuWrapper>
+      {showModal ? <RrHeaderModal showFunction={showFunction} /> : null}
     </RrHeaderWrapper>
   )
 }
@@ -27,6 +42,7 @@ const RrHeaderWrapper = styled.div`
   padding-left: 10%;
   padding-right: 10%;
   align-items: center;
+  position: relative;
 `
 
 const MenuWrapper = styled.div`
@@ -49,6 +65,11 @@ const Logo = styled.div`
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
+
+  * {
+    color: #fff;
+    text-decoration: none;
+  }
 `
 
 const UserName = styled.span`
@@ -60,7 +81,7 @@ const UserName = styled.span`
   margin-left: 20px;
   cursor: pointer;
 `
-const MenuItem = styled.span`
+const MenuItem = styled(Link)`
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -68,4 +89,5 @@ const MenuItem = styled.span`
   margin-right: 20px;
   color: #ffffff;
   cursor: pointer;
+  text-decoration: none;
 `

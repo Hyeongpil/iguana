@@ -26,6 +26,8 @@ const IndexPage = () => {
   const [alarms, setAlarms] = useState<Alarm[]>([])
 
   const history = useHistory()
+  console.log(history)
+
   const repository = useMemo(() => new AlarmRepository(), [])
 
   const fetchAlarms = useCallback(async () => {
@@ -81,6 +83,7 @@ const Img = styled.img`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
   padding-left: 10%;
   padding-right: 10%;
 `

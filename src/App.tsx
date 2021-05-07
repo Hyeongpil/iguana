@@ -13,8 +13,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <DefaultLayout>
-        <Router basename="/iguana">
+      <Router basename="/iguana">
+        <DefaultLayout>
           <Switch>
             <Route exact path="/" component={IndexPage} />
             <Route path="/category" component={categoryPage} />
@@ -22,8 +22,8 @@ function App() {
             <Route path="/login" component={loginPage} />
             <Route path="/my" component={myPage} />
           </Switch>
-        </Router>
-      </DefaultLayout>
+        </DefaultLayout>
+      </Router>
     </>
   )
 }
