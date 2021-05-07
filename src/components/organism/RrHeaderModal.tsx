@@ -1,18 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const RrHeaderModal = props => {
-  const history = useHistory()
-  console.log(useHistory)
-
   const onMouseleave = () => {
     props.showFunction(false)
   }
 
   return (
     <RrHeaderModalWrapper onMouseLeave={onMouseleave}>
-      <Button onClick={() => history.push('/my/account')}>
+      <LinkButton to="/my/account">
         <svg
           width="24"
           height="24"
@@ -30,8 +27,9 @@ const RrHeaderModal = props => {
           />
         </svg>
         <span>계정</span>
-      </Button>
-      <Button onClick={() => history.push('/my/notice')}>
+      </LinkButton>
+
+      <LinkButton to="/my/notice">
         <svg
           width="24"
           height="24"
@@ -46,8 +44,8 @@ const RrHeaderModal = props => {
         </svg>
 
         <span>공지사항</span>
-      </Button>
-      <Button onClick={() => history.push('/my/qna')}>
+      </LinkButton>
+      <LinkButton to="/my/qna">
         <svg
           width="24"
           height="24"
@@ -62,7 +60,7 @@ const RrHeaderModal = props => {
         </svg>
 
         <span>문의하기</span>
-      </Button>
+      </LinkButton>
       <Button>
         <svg
           width="24"
@@ -109,6 +107,40 @@ const Button = styled.button`
   text-align: left;
   background-color: transparent;
   cursor: pointer;
+
+  :last-child {
+    border: none;
+  }
+
+  :hover span {
+    color: #000;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+
+    letter-spacing: 0.122727px;
+
+    color: #4f4f4f;
+  }
+
+  svg {
+    margin-right: 12px;
+  }
+`
+
+const LinkButton = styled(Link)`
+  display: block;
+  border: none;
+  border-bottom: 1px solid #f2f2f2;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
 
   :last-child {
     border: none;
