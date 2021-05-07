@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Route, Redirect } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import RrText from '../components/atom/RrText'
 import RrAccount from 'components/organism/RrAccount'
@@ -7,7 +7,9 @@ import RrNotice from 'components/organism/RrNotice'
 import RrQna from 'components/organism/RrQna'
 // import RrNoticeConts from 'components/organism/RrNoticeConts'
 
-const myPage = () => {
+const myPage = props => {
+  console.log(props.location.pathname)
+
   return (
     <MyPageWrapper>
       <ProfileWrapper>
@@ -40,7 +42,6 @@ const myPage = () => {
           <Route path="/my/qna" component={RrQna} />
         </ContentsWrapper>
       </FlexRowWrapper>
-      <Redirect to="/my/account" />
     </MyPageWrapper>
   )
 }
